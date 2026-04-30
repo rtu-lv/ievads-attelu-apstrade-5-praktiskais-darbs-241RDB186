@@ -7,15 +7,18 @@ in
   lib ? pkgs.lib,
 }:
 pkgs.mkShellNoCC {
-  packages = with pkgs; [
+  packages = with pkgs.python3.pkgs; with pkgs;  [
     python3
-    gtk4
-  ] ++ (with python3.pkgs; [
+
+    # Modules
     numpy
     opencv-python
     matplotlib
+
+    # Matplotlib GTK4 backend
+    gtk4
     pygobject3
-  ]);
+  ];
 
   MPLBACKEND = "gtk4cairo";
 }
