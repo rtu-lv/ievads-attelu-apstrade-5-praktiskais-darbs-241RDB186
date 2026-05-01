@@ -24,7 +24,7 @@ def plot(img, title, save=os.getenv('SCRIPT_SAVE_IMG') is not None):
 	plt.show()
 
 
-def gaussian_thresh(img, kernel=15, c=0):
+def gaussian_thresh(img, kernel=99, c=0):
 	img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
 
 	method = cv2.ADAPTIVE_THRESH_GAUSSIAN_C
