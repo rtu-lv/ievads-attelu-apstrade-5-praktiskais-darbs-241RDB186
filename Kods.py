@@ -24,14 +24,21 @@ def plot(img, title, save=os.getenv('SCRIPT_SAVE_IMG') is not None):
 	plt.show()
 
 
-def gaussian_thresh(img, kernel=99, c=0):
+def gaussian_thresh(img, kernel=99, c=10):
 	img = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
 
 	method = cv2.ADAPTIVE_THRESH_GAUSSIAN_C
-	thresh = cv2.THRESH_BINARY
+	type   = cv2.THRESH_BINARY
 
-	output = cv2.adaptiveThreshold(img, 255, method, thresh, kernel, c)
-	return cv2.applyColorMap(output, cv2.COLORMAP_SUMMER)
+	thresh = cv2.adaptiveThreshold(img, 255, method, type, kernel, c)
+
+	cmap = plt.get_cmap('summer')
+	output = np.empty((*img.shape, 3), dtype=np.uint8)
+
+	output[thresh == 0]   = [np.uint8(c * 255) for c in cmap(1.0)[:3]]
+	output[thresh == 255] = [np.uint8(c * 255) for c in cmap(0.0)[:3]]
+
+	return output
 
 def k_means(img, k=5, iter=20, eps=1):
 	data = img.reshape(-1, 3).astype(np.float32)
