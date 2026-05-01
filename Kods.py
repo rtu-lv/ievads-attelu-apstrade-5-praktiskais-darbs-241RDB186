@@ -78,27 +78,22 @@ plot(A, 'Putni', save=False)
 
 B = gaussian_mixture(A)
 plot(B, 'Putni - Gausa adaptīvā sliekšņošana')
-
 B = k_means(A)
 plot(B, 'Putni - K-Means')
-
 
 A = read('Bildes/Kaķis apģērbā.jpg')
 plot(A, 'Kaķis apģērbā', save=False)
 
 B = gaussian_mixture(A)
 plot(B, 'Kaķis apģērbā - Gausa adaptīvā sliekšņošana')
-
 B = k_means(A)
 plot(B, 'Kaķis apģērbā - K-Means')
-
 
 A = read('Bildes/Dzīvnieki.jpg')
 plot(A, 'Dzīvnieki', save=False)
 
 B = gaussian_mixture(A)
 plot(B, 'Dzīvnieki - Gausa adaptīvā sliekšņošana')
-
 B = k_means(A)
 plot(B, 'Dzīvnieki - K-Means')
 
