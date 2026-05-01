@@ -6,8 +6,6 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-plt.rcParams['image.cmap'] = 'summer'
-
 def read(path):
 	img = cv2.imread(path)
 	return cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -32,7 +30,8 @@ def gaussian_thresh(img, kernel=15, c=0):
 	method = cv2.ADAPTIVE_THRESH_GAUSSIAN_C
 	thresh = cv2.THRESH_BINARY
 
-	return cv2.adaptiveThreshold(img, 255, method, thresh, kernel, c)
+	output = cv2.adaptiveThreshold(img, 255, method, thresh, kernel, c)
+	return cv2.applyColorMap(output, cv2.COLORMAP_SUMMER)
 
 def k_means(img, k=5, iter=20, eps=1):
 	data = img.reshape(-1, 3).astype(np.float32)
@@ -43,7 +42,7 @@ def k_means(img, k=5, iter=20, eps=1):
 	_, labels, centers = cv2.kmeans(data, k, None, criteria, iter, origin)
 	labels = labels.reshape(img.shape[:2])
 
-	cmap   = plt.get_cmap()
+	cmap   = plt.get_cmap('summer')
 	output = np.empty_like(img)
 
 	for i in range(k):
