@@ -81,13 +81,13 @@ plot(B, 'Putni - Gausa adaptīvā sliekšņošana')
 B = k_means(A)
 plot(B, 'Putni - K-Means')
 
-A = read('Bildes/Kaķis apģērbā.jpg')
-plot(A, 'Kaķis apģērbā', save=False)
+A = read('Bildes/Kaķis.jpg')
+plot(A, 'Kaķis', save=False)
 
 B = gaussian_mixture(A)
-plot(B, 'Kaķis apģērbā - Gausa adaptīvā sliekšņošana')
+plot(B, 'Kaķis - Gausa adaptīvā sliekšņošana')
 B = k_means(A)
-plot(B, 'Kaķis apģērbā - K-Means')
+plot(B, 'Kaķis - K-Means')
 
 A = read('Bildes/Dzīvnieki.jpg')
 plot(A, 'Dzīvnieki', save=False)
